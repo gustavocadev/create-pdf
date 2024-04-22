@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
+    "hono": "^4.2.6",
+    "pdfkit": "^0.15.0",
+    "pdfkit-table": "^0.1.99"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pdfkit": "^0.13.4"
+  }
+}
