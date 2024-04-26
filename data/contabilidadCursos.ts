@@ -1,6 +1,7 @@
+import { Course } from '../src/types/courses';
 import { contabilidadId } from './careers';
 
-export const contabilidadCourses = [
+export const contabilidadCourses: Course[] = [
   {
     code: 'CONT004-1',
     name: 'ADMINISTRACIÓN EMPRESARIAL',
