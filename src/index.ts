@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import PDFDocument from 'pdfkit-table';
 import { contabilidadCourses } from '../data/contabilidadCursos';
 import { computacionCourses } from '../data/computacionInformaticaCursos';
+import { getCreditsSum } from './utils/getCreditsSum';
 
 const app = new Hono();
 
@@ -14,23 +15,29 @@ app.get('/courses', async (c) => {
 
   doc.table({
     headers: ['Codigo', 'Semestre', 'Nombre', 'Credits'],
-    rows: contabilidadCourses.map((course) => [
-      course.code,
-      String(course.semester),
-      course.name,
-      String(course.courseCredits),
-    ]),
+    rows: [
+      ...contabilidadCourses.map((course) => [
+        course.code,
+        String(course.semester),
+        course.name,
+        String(course.courseCredits),
+      ]),
+      ['', '', 'Creditos Totales', getCreditsSum(contabilidadCourses)],
+    ],
     title: 'Cursos Contabilidad',
   });
 
   doc.table({
     headers: ['Codigo', 'Semestre', 'Nombre', 'Credits'],
-    rows: computacionCourses.map((course) => [
-      course.code,
-      String(course.semester),
-      course.name,
-      String(course.courseCredits),
-    ]),
+    rows: [
+      ...computacionCourses.map((course) => [
+        course.code,
+        String(course.semester),
+        course.name,
+        String(course.courseCredits),
+      ]),
+      ['', '', 'Creditos Totales', getCreditsSum(computacionCourses)],
+    ],
     title: 'Cursos Computacion',
   });
 
